@@ -806,6 +806,10 @@ giftButton.addEventListener("click", function() {
 
     birthdayNote.classList.toggle("show");
 
+    /* ✨ Intensify glitter */
+    document.body.classList.toggle("gift-opened");
+
+    /* 🎵 Start birthday music */
     birthdayMusic.play().catch(() => {});
 
 });
