@@ -1055,61 +1055,193 @@ footer {
         transition: none !important;
     }
 }
-/* SECRET KEY */
+/* =========================
+   MAGICAL SECRET KEY
+========================= */
 
 .secret-key {
+    position: relative;
     text-align: center;
-    margin: 28px 0 22px;
-    min-height: 75px;
+    margin: 32px 0 28px;
+    min-height: 100px;
 }
+
+/* The key itself */
 
 #keyButton {
+    position: relative;
+
     border: none;
     background: transparent;
+
     color: white;
-    font-size: 38px;
+    font-size: 42px;
     line-height: 1;
-    padding: 8px;
+
+    padding: 12px;
     cursor: pointer;
 
-    animation: keyFloat 2.5s ease-in-out infinite;
+    /* Floating movement */
+    animation:
+        magicalFloat 3s ease-in-out infinite;
 
     filter:
-        drop-shadow(0 0 6px rgba(255,255,255,.35))
-        drop-shadow(0 0 14px rgba(210,168,255,.35));
+        drop-shadow(0 0 5px rgba(255,255,255,.5))
+        drop-shadow(0 0 12px rgba(210,168,255,.6))
+        drop-shadow(0 0 25px rgba(88,166,255,.35));
 
-    transition: .25s;
+    transition:
+        transform .3s ease,
+        filter .3s ease;
 }
+
+/* Hover */
 
 #keyButton:hover {
-    transform: scale(1.15);
+    transform: scale(1.18);
+
+    filter:
+        drop-shadow(0 0 7px #fff)
+        drop-shadow(0 0 15px #d2a8ff)
+        drop-shadow(0 0 30px #58a6ff);
 }
 
-@keyframes keyFloat {
+/* Floating motion */
+
+@keyframes magicalFloat {
 
     0%, 100% {
-        transform: translateY(0) rotate(-5deg);
+        transform:
+            translateY(0)
+            rotate(-6deg);
     }
 
     50% {
-        transform: translateY(-8px) rotate(5deg);
+        transform:
+            translateY(-12px)
+            rotate(6deg);
     }
 
 }
 
+
+/* =========================
+   MAGICAL SPARKLES
+========================= */
+
+.secret-key::before,
+.secret-key::after {
+    content: "✦";
+    position: absolute;
+
+    color: #fff;
+
+    font-size: 15px;
+
+    pointer-events: none;
+
+    animation:
+        magicSparkle 2.5s ease-in-out infinite;
+}
+
+/* Left sparkle */
+
+.secret-key::before {
+    left: calc(50% - 58px);
+    top: 18px;
+
+    color: #d2a8ff;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #d2a8ff,
+        0 0 22px #58a6ff;
+}
+
+/* Right sparkle */
+
+.secret-key::after {
+    left: calc(50% + 43px);
+    top: 45px;
+
+    color: #58a6ff;
+
+    font-size: 11px;
+
+    animation-delay: .8s;
+
+    text-shadow:
+        0 0 5px #fff,
+        0 0 12px #58a6ff,
+        0 0 20px #d2a8ff;
+}
+
+@keyframes magicSparkle {
+
+    0%, 100% {
+        opacity: .15;
+        transform: scale(.5) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4) rotate(90deg);
+    }
+
+}
+
+
+/* =========================
+   KEY HINT
+========================= */
+
 .key-hint {
     margin-top: 8px;
+
     min-height: 16px;
+
     color: #8b949e;
+
     font-size: 10px;
     letter-spacing: 1px;
+
     opacity: 0;
-    transition: opacity .3s ease;
+
+    transition:
+        opacity .3s ease;
 }
 
 .key-hint.show {
     opacity: 1;
 }
+
+
+/* =========================
+   THIRD CLICK
+========================= */
+
+#keyButton.unlocked {
+    animation:
+        unlockedKey 1s ease-in-out infinite alternate;
+
+    filter:
+        drop-shadow(0 0 8px #fff)
+        drop-shadow(0 0 18px #d2a8ff)
+        drop-shadow(0 0 35px #58a6ff);
+}
+
+@keyframes unlockedKey {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+
+}
+
 /* =========================
    SINCERE MESSAGE
 ========================= */
@@ -1186,6 +1318,32 @@ footer {
 .sincere-message strong {
     color: #d2a8ff;
 }
+.close-message {
+    display: block;
+    margin: 22px auto 0;
+
+    padding: 9px 16px;
+
+    border: 1px solid #30363d;
+    border-radius: 8px;
+
+    background: #161b22;
+    color: #8b949e;
+
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.close-message:hover {
+    color: #f0f6fc;
+    border-color: #d2a8ff;
+    background: #1f2937;
+}
+
 
 @keyframes sincereReveal {
 
@@ -1303,6 +1461,7 @@ footer {
     <div class="topbar">
         <span class="repo">
             Case No. FTS-0911-2026
+            <br>
             <small>IN RE: THE MYSTERY CASE FILE OF FTS</small>
         </span>
 
@@ -1385,7 +1544,7 @@ footer {
     <div class="sincere-line"></div>
 
     <p>
-        Dear Sir Chief,
+        Dear Atty. Sally,
         <br><br>
 
         Behind all the classified files, court orders,
@@ -1417,7 +1576,16 @@ footer {
         With appreciation,
         <br>
         <strong>LSD 2026</strong>
-    </p>
+
+</p>
+
+<button
+    id="closeMessage"
+    class="close-message">
+
+    🔒 SEAL COMMUNIQUÉ
+
+</button>
 
 </div>
 
@@ -1729,7 +1897,7 @@ openFile.addEventListener("click", function() {
 
     classifiedTitle.innerHTML = `
         <div class="security-step">
-            ⚠️ HALT!
+            HALT!
             <br><br>
             ARE YOU THE CHIEF?
         </div>
@@ -1862,6 +2030,9 @@ const keyHint =
 
 const sincereMessage =
     document.getElementById("sincereMessage");
+    
+const closeMessage =
+    document.getElementById("closeMessage");
 
 let keyClicks = 0;
 
@@ -1892,7 +2063,7 @@ keyButton.addEventListener("click", function() {
 
         /* Stop the floating animation */
 
-        keyButton.style.animation = "none";
+        keyButton.classList.add("unlocked");
 
         /* Change the key slightly */
 
@@ -1907,6 +2078,12 @@ keyButton.addEventListener("click", function() {
         }, 500);
 
     }
+
+});
+    
+closeMessage.addEventListener("click", function() {
+
+    sincereMessage.classList.remove("show");
 
 });
 
