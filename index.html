@@ -1547,10 +1547,9 @@ footer {
         Dear Atty. Sally,
         <br><br>
 
-        Behind all the classified files, court orders,
-        ridiculous charges, and birthday nonsense,
-        there is a simple message we really wanted
-        you to know.
+        Behind this curious case lies a humble message
+        from your loyal subjects: your leadership, support,
+        and kindness are valued more than words can properly decree.
         <br><br>
 
         Thank you for your guidance, support,
@@ -2030,7 +2029,7 @@ const keyHint =
 
 const sincereMessage =
     document.getElementById("sincereMessage");
-    
+
 const closeMessage =
     document.getElementById("closeMessage");
 
@@ -2038,52 +2037,75 @@ let keyClicks = 0;
 
 keyButton.addEventListener("click", function() {
 
-    keyClicks++;
+    /* Before the key is unlocked */
 
-    if (keyClicks === 1) {
+    if (keyClicks < 3) {
 
-        keyHint.textContent =
-            "...";
+        keyClicks++;
 
-        keyHint.classList.add("show");
+        if (keyClicks === 1) {
+
+            keyHint.textContent =
+                "...";
+
+            keyHint.classList.add("show");
+
+        }
+
+        else if (keyClicks === 2) {
+
+            keyHint.textContent =
+                "THE KEY APPEARS TO BE IMPORTANT.";
+
+        }
+
+        else if (keyClicks === 3) {
+
+            keyHint.textContent =
+                "🔓 CLEARANCE GRANTED.";
+
+            keyButton.classList.add("unlocked");
+
+            keyButton.textContent = "🔓";
+
+            setTimeout(function() {
+
+                sincereMessage.classList.add("show");
+
+            }, 500);
+
+        }
 
     }
 
-    else if (keyClicks === 2) {
+    /* After the key has been unlocked */
 
-        keyHint.textContent =
-            "THE KEY APPEARS TO BE IMPORTANT.";
+    else {
 
-    }
-
-    else if (keyClicks === 3) {
-
-        keyHint.textContent =
-            "🔓 CLEARANCE GRANTED.";
-
-        /* Stop the floating animation */
-
-        keyButton.classList.add("unlocked");
-
-        /* Change the key slightly */
+        sincereMessage.classList.add("show");
 
         keyButton.textContent = "🔓";
 
-        /* Reveal sincere message */
-
-        setTimeout(function() {
-
-            sincereMessage.classList.add("show");
-
-        }, 500);
+        keyHint.textContent =
+            "COMMUNIQUÉ UNSEALED.";
 
     }
 
 });
-    
+
+
+/* =========================
+   SEAL COMMUNIQUÉ
+========================= */
+
 closeMessage.addEventListener("click", function() {
 
     sincereMessage.classList.remove("show");
+
+    keyButton.textContent = "🗝️";
+
+    keyHint.textContent =
+        "THE COMMUNIQUÉ HAS BEEN SEALED.";
 
 });
 
