@@ -142,7 +142,46 @@ body {
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 12px 35px rgba(35,134,54,.35);
 }
+/* =========================
+   SECURITY VERIFICATION
+========================= */
 
+.security-button {
+    border: 1px solid #30363d;
+    background: #161b22;
+    color: #f0f6fc;
+    border-radius: 10px;
+    padding: 13px 22px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.security-button:hover {
+    border-color: #58a6ff;
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(88,166,255,.15);
+}
+
+.security-step {
+    animation: securityAppear .45s ease both;
+}
+
+@keyframes securityAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    
 .classified-warning {
     margin-top: 22px;
     color: #6e7681;
@@ -905,33 +944,33 @@ footer {
 
 <div id="classifiedScreen">
 
-    <div class="classified-box">
+    <div class="classified-box" id="classifiedBox">
 
         <div class="classified-stamp">
             CLASSIFIED
         </div>
 
-        <div class="classified-icon">
+        <div class="classified-icon" id="classifiedIcon">
             🔒
         </div>
 
-        <div class="classified-title">
+        <div class="classified-title" id="classifiedTitle">
             CLASSIFIED LSD FILE
         </div>
 
-        <div class="classified-level">
+        <div class="classified-level" id="classifiedLevel">
             ACCESS LEVEL: STRICTLY CONFIDENTIAL
         </div>
 
         <div class="classified-line"></div>
 
         <button class="open-file" id="openFile">
-            ⚖️ UNSEAL THE BIRTHDAY FILE
+            ⚠️ OPEN CLASSIFIED DOSSIER
         </button>
 
-        <div class="classified-warning">
+        <div class="classified-warning" id="classifiedWarning">
             This file contains highly confidential<br>
-            birthday information intended for authorized personnel.
+            information intended for authorized personnel.
         </div>
 
     </div>
@@ -944,7 +983,7 @@ footer {
         ACCESS GRANTED ✓
 
         <div class="access-small">
-            THE CASE HAS BEEN UNSEALED.
+            CLASSIFIED DOSSIER SUCCESSFULLY ACCESSED.
         </div>
     </div>
 
@@ -1207,6 +1246,21 @@ footer {
 const classifiedScreen =
     document.getElementById("classifiedScreen");
 
+const classifiedBox =
+    document.getElementById("classifiedBox");
+
+const classifiedIcon =
+    document.getElementById("classifiedIcon");
+
+const classifiedTitle =
+    document.getElementById("classifiedTitle");
+
+const classifiedLevel =
+    document.getElementById("classifiedLevel");
+
+const classifiedWarning =
+    document.getElementById("classifiedWarning");
+
 const openFile =
     document.getElementById("openFile");
 
@@ -1216,13 +1270,88 @@ const accessGranted =
 const birthdayMusic =
     document.getElementById("birthdayMusic");
 
+
+/* =========================
+   SECURITY CHECK 1
+========================= */
+
 openFile.addEventListener("click", function() {
+
+    classifiedIcon.textContent = "⚠️";
+
+    classifiedTitle.innerHTML = `
+        <div class="security-step">
+            ARE YOU SURE?
+        </div>
+    `;
+
+    classifiedLevel.textContent =
+        "SECURITY VERIFICATION REQUIRED";
+
+    classifiedWarning.innerHTML = `
+        You are attempting to access<br>
+        a classified dossier.
+    `;
+
+    openFile.outerHTML = `
+        <button class="security-button" id="securityOne">
+            YES, PROCEED
+        </button>
+    `;
+
+    document
+        .getElementById("securityOne")
+        .addEventListener("click", securityCheckTwo);
+
+});
+
+
+/* =========================
+   SECURITY CHECK 2
+========================= */
+
+function securityCheckTwo() {
+
+    classifiedIcon.textContent = "🔐";
+
+    classifiedTitle.innerHTML = `
+        <div class="security-step">
+            CONFIRM ACCESS
+        </div>
+    `;
+
+    classifiedLevel.textContent =
+        "SECONDARY AUTHORIZATION REQUIRED";
+
+    classifiedWarning.innerHTML = `
+        This action cannot be undone.<br>
+        Proceed with classified access?
+    `;
+
+    document.getElementById("securityOne").outerHTML = `
+        <button class="security-button" id="securityTwo">
+            CONFIRM ACCESS
+        </button>
+    `;
+
+    document
+        .getElementById("securityTwo")
+        .addEventListener("click", finalAccess);
+
+}
+
+
+/* =========================
+   FINAL ACCESS
+========================= */
+
+function finalAccess() {
 
     /* Show ACCESS GRANTED */
 
     accessGranted.classList.add("show");
 
-    /* Reveal the birthday page */
+    /* Reveal the main page */
 
     setTimeout(function() {
 
@@ -1235,8 +1364,7 @@ openFile.addEventListener("click", function() {
        The visitor can press play whenever they want.
     */
 
-});
-
+}
 
 /* =========================
    BIRTHDAY GIFT
