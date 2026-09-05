@@ -563,6 +563,75 @@ footer {
         transition: none !important;
     }
 }
+    /* ✨ STRONGER GLITTER WHEN GIFT IS OPENED */
+
+body.gift-opened .sparkle {
+    animation-duration: 5s, 1s;
+    opacity: .8;
+
+    box-shadow:
+        0 0 6px rgba(255,255,255,1),
+        0 0 14px rgba(255,209,102,.95),
+        0 0 28px rgba(255,209,102,.65),
+        0 0 42px rgba(210,168,255,.35);
+}
+
+body.gift-opened .sparkle::before {
+    height: 19px;
+}
+
+body.gift-opened .sparkle::after {
+    width: 19px;
+}
+
+body.gift-opened .glitter {
+    animation: glitterGlow 2s ease-in-out infinite;
+}
+
+@keyframes glitterGlow {
+    0%, 100% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+body.gift-opened .card {
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 45px rgba(35,134,54,.18),
+        0 0 90px rgba(210,168,255,.18),
+        0 0 120px rgba(255,209,102,.08);
+
+    transition: box-shadow 1.5s ease;
+}
+
+
+/* 👆 CLICK SIR CHIEF'S PICTURE TO FLIP */
+
+.profile {
+    cursor: pointer;
+}
+
+.profile-inner.clicked {
+    animation: profileClickFlip 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes profileClickFlip {
+    0% {
+        transform: rotateY(0deg) scale(1);
+    }
+
+    45% {
+        transform: rotateY(190deg) scale(1.05);
+    }
+
+    100% {
+        transform: rotateY(360deg) scale(1);
+    }
+}
 </style>
 </head>
 
@@ -806,6 +875,10 @@ giftButton.addEventListener("click", function() {
 
     birthdayNote.classList.toggle("show");
 
+    /* ✨ Intensify glitter */
+    document.body.classList.toggle("gift-opened");
+
+    /* 🎵 Start birthday music */
     birthdayMusic.play().catch(() => {});
 
 });
@@ -825,6 +898,24 @@ window.addEventListener("load", function() {
         });
 
     }, 2000);
+
+});
+/* 👆 CLICK PROFILE TO FLIP */
+
+const profile =
+    document.querySelector(".profile");
+
+const profileInner =
+    document.querySelector(".profile-inner");
+
+profile.addEventListener("click", function() {
+
+    profileInner.classList.remove("clicked");
+
+    /* Restart animation every click */
+    void profileInner.offsetWidth;
+
+    profileInner.classList.add("clicked");
 
 });
 
