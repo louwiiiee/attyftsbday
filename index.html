@@ -611,6 +611,98 @@ h1 {
         transform: translateY(0);
     }
 }
+    
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section {
+    margin: 25px 0;
+    padding: 20px 14px;
+    text-align: center;
+    border: 1px solid rgba(210,168,255,.28);
+    border-radius: 12px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(110,64,201,.10),
+            rgba(31,111,235,.06)
+        );
+    box-shadow:
+        inset 0 0 25px rgba(210,168,255,.03),
+        0 8px 25px rgba(0,0,0,.15);
+}
+
+.countdown-label {
+    color: #8b949e;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 7px;
+}
+
+.countdown-title {
+    color: #d2a8ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 17px;
+}
+
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.countdown-box {
+    min-width: 68px;
+    padding: 10px 6px;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background: rgba(8,11,18,.75);
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.2);
+}
+
+.countdown-box span {
+    display: block;
+    color: #f0f6fc;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow:
+        0 0 12px rgba(88,166,255,.25);
+}
+
+.countdown-box small {
+    display: block;
+    margin-top: 7px;
+    color: #8b949e;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.countdown-colon {
+    color: #58a6ff;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: -13px;
+    animation: countdownBlink 1s steps(2) infinite;
+}
+
+.countdown-footer {
+    margin-top: 16px;
+    color: #6e7681;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+@keyframes countdownBlink {
+    50% {
+        opacity: .25;
+    }
+}
 
 /* =========================
    GIFT
@@ -922,6 +1014,36 @@ footer {
     .classified-title {
         font-size: 27px;
     }
+     /* =========================
+       COUNTDOWN - MOBILE
+    ========================= */
+
+    .countdown {
+        gap: 3px;
+    }
+
+    .countdown-box {
+        min-width: 58px;
+        padding: 9px 4px;
+    }
+
+    .countdown-box span {
+        font-size: 20px;
+    }
+
+    .countdown-box small {
+        font-size: 7px;
+    }
+
+    .countdown-colon {
+        font-size: 17px;
+    }
+
+    .countdown-title {
+        font-size: 11px;
+    }
+
+}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -933,6 +1055,158 @@ footer {
         transition: none !important;
     }
 }
+/* SECRET KEY */
+
+.secret-key {
+    text-align: center;
+    margin: 28px 0 22px;
+    min-height: 75px;
+}
+
+#keyButton {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 38px;
+    line-height: 1;
+    padding: 8px;
+    cursor: pointer;
+
+    animation: keyFloat 2.5s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 6px rgba(255,255,255,.35))
+        drop-shadow(0 0 14px rgba(210,168,255,.35));
+
+    transition: .25s;
+}
+
+#keyButton:hover {
+    transform: scale(1.15);
+}
+
+@keyframes keyFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(5deg);
+    }
+
+}
+
+.key-hint {
+    margin-top: 8px;
+    min-height: 16px;
+    color: #8b949e;
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.key-hint.show {
+    opacity: 1;
+}
+/* =========================
+   SINCERE MESSAGE
+========================= */
+
+.sincere-message {
+    display: none;
+
+    margin: 25px 0 30px;
+    padding: 26px 22px;
+
+    text-align: left;
+
+    border: 1px solid rgba(210,168,255,.45);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(110,64,201,.14),
+            rgba(35,134,54,.07)
+        );
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25),
+        0 0 35px rgba(210,168,255,.08);
+}
+
+/* Message becomes visible */
+
+.sincere-message.show {
+    display: block;
+    animation: sincereReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.sincere-icon {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.sincere-message h3 {
+    text-align: center;
+    color: #f0f6fc;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+}
+
+.sincere-line {
+    width: 70px;
+    height: 1px;
+    margin: 0 auto 20px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d2a8ff,
+        transparent
+    );
+}
+
+.sincere-message p {
+    color: #c9d1d9;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.sincere-message strong {
+    color: #d2a8ff;
+}
+
+@keyframes sincereReveal {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(.96);
+        max-height: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+        max-height: 1000px;
+    }
+
+}
+
 </style>
 </head>
 
@@ -959,13 +1233,20 @@ footer {
         </div>
 
         <div class="classified-level" id="classifiedLevel">
-            ACCESS LEVEL: STRICTLY CONFIDENTIAL
+            CASE NO. FTS-0911-2026
+            <br>
+            IN RE: THE MYSTERY CASE FILE OF FTS
         </div>
 
         <div class="classified-line"></div>
 
+        <div class="classified-warning" id="classifiedWarning">
+            A CLASSIFIED FILE AWAITS<br>
+            THE CHIEF
+        </div>
+
         <button class="open-file" id="openFile">
-            ⚠️ OPEN CLASSIFIED DOSSIER
+            📜 OPEN THE DOSSIER
         </button>
 
         <div class="classified-warning" id="classifiedWarning">
@@ -983,7 +1264,9 @@ footer {
         ACCESS GRANTED ✓
 
         <div class="access-small">
-            CLASSIFIED DOSSIER SUCCESSFULLY ACCESSED.
+            THE CLASSIFIED DOSSIER HAS BEEN UNSEALED.
+            <br><br>
+            WELCOME, SIR CHIEF. 👑
         </div>
     </div>
 
@@ -1019,7 +1302,8 @@ footer {
 
     <div class="topbar">
         <span class="repo">
-            fts-birthday / celebration
+            Case No. FTS-0911-2026
+            <small>IN RE: THE MYSTERY CASE FILE OF FTS</small>
         </span>
 
         <span class="confirmed">
@@ -1066,8 +1350,128 @@ footer {
             <div class="motion">
                 ⚖️ Motion to celebrate: GRANTED.
             </div>
+            <!-- SECRET KEY -->
 
-           <!-- BIRTHDAY INVITATION -->
+<div class="secret-key">
+
+    <button
+        id="keyButton"
+        aria-label="Classified key">
+
+        🗝️
+
+    </button>
+
+    <div
+        id="keyHint"
+        class="key-hint">
+    </div>
+
+</div>
+<!-- SECRET MESSAGE -->
+
+<div
+    class="sincere-message"
+    id="sincereMessage">
+
+    <div class="sincere-icon">
+        📜
+    </div>
+
+    <h3>
+        PRIVATE COMMUNIQUÉ
+    </h3>
+
+    <div class="sincere-line"></div>
+
+    <p>
+        Dear Sir Chief,
+        <br><br>
+
+        Behind all the classified files, court orders,
+        ridiculous charges, and birthday nonsense,
+        there is a simple message we really wanted
+        you to know.
+        <br><br>
+
+        Thank you for your guidance, support,
+        patience, and for everything you do for us.
+        We are grateful not only to have you as our
+        Chief, but also to have someone we can look up
+        to, learn from, and share good memories with.
+        <br><br>
+
+        We hope this celebration reminds you that
+        you are appreciated more than you probably
+        realize.
+        <br><br>
+
+        May this new chapter bring you happiness,
+        success, good health, and plenty of reasons
+        to laugh.
+        <br><br>
+
+        Happy Birthday, Sir Chief. 🎂
+        <br><br>
+
+        With appreciation,
+        <br>
+        <strong>LSD 2026</strong>
+    </p>
+
+</div>
+
+
+
+            <!-- COUNTDOWN -->
+
+<div class="countdown-section">
+
+    <div class="countdown-label">
+        ⏳ TIME REMAINING
+    </div>
+
+    <div class="countdown-title">
+        UNTIL THE CHIEF IS SUMMONED
+    </div>
+
+    <div class="countdown">
+
+        <div class="countdown-box">
+            <span id="days">00</span>
+            <small>DAYS</small>
+        </div>
+
+        <div class="countdown-colon">:</div>
+
+        <div class="countdown-box">
+            <span id="hours">00</span>
+            <small>HOURS</small>
+        </div>
+
+        <div class="countdown-colon">:</div>
+
+        <div class="countdown-box">
+            <span id="minutes">00</span>
+            <small>MINUTES</small>
+        </div>
+
+        <div class="countdown-colon">:</div>
+
+        <div class="countdown-box">
+            <span id="seconds">00</span>
+            <small>SECONDS</small>
+        </div>
+
+    </div>
+
+    <div class="countdown-footer">
+        📜 THE COURT AWAITS YOUR ARRIVAL.
+    </div>
+
+</div>
+
+           <!-- OFFICIAL BIRTHDAY ORDER -->
 
 <div class="gift-section">
 
@@ -1075,7 +1479,7 @@ footer {
         class="gift-button"
         id="giftButton">
 
-        📜 CLICK TO VIEW
+        📜 READ YOUR BIRTHDAY ORDER
 
     </button>
 
@@ -1088,22 +1492,58 @@ footer {
         </div>
 
         <h3>
-            YOU'RE INVITED! 🎉
+            📜 OFFICIAL BIRTHDAY ORDER
         </h3>
 
         <p>
-            You are cordially invited to celebrate
-            the birthday of our Chief, Atty. FTS! 👑
+            <strong>Dear Sir Chief,</strong>
             <br><br>
 
-            Join us for good food, great company,
-            🍺🎤, laughter, and a night of celebration
-            as we celebrate another year of Sir Chief's
-            legendary existence. 😂🎂
+            After careful investigation, extensive deliberation,
+            and absolutely no possibility of appeal, the Court has
+            determined that you are officially due for another
+            birthday celebration. 😂⚖️
+
             <br><br>
 
-            Your presence would make the celebration
-            even more special. See you there! 🥳
+            Therefore, you are hereby ordered to report for an
+            evening of good food, drinks, music, laughter,
+            questionable decisions, and an unreasonable amount
+            of birthday fun. 🍻🎤🎂
+
+            <br><br>
+
+            No work.
+            No serious meetings.
+            No excuses.
+
+            <br><br>
+
+            Just one night where the Chief gets to sit back,
+            relax, and enjoy.
+
+            <br><br>
+
+            <strong>
+                Your attendance is hereby ORDERED.
+            </strong>
+            ⚖️
+
+            <br><br>
+
+            Failure to appear may result in additional
+            birthday celebrations. There is no appeal. 😂
+
+            <br><br>
+
+            Happy Birthday, Sir Chief! 👑🎂🥳
+
+            <br><br>
+
+            <strong>
+                With love,<br>
+                LSD 2026 ❤️
+            </strong>
         </p>
 
     </div>
@@ -1289,16 +1729,20 @@ openFile.addEventListener("click", function() {
 
     classifiedTitle.innerHTML = `
         <div class="security-step">
-            ARE YOU SURE?
+            ⚠️ HALT!
+            <br><br>
+            ARE YOU THE CHIEF?
         </div>
     `;
 
     classifiedLevel.textContent =
-        "SECURITY VERIFICATION REQUIRED";
+        "ROYAL IDENTITY VERIFICATION REQUIRED";
 
     classifiedWarning.innerHTML = `
+        WARNING:<br>
         You are attempting to access<br>
-        a classified dossier.
+        a CLASSIFIED DOSSIER intended<br>
+        exclusively for the Chief.
     `;
 
     openFile.outerHTML = `
@@ -1324,21 +1768,21 @@ function securityCheckTwo() {
 
     classifiedTitle.innerHTML = `
         <div class="security-step">
-            CONFIRM ACCESS
+            IDENTITY CONFIRMED
         </div>
     `;
 
     classifiedLevel.textContent =
-        "SECONDARY AUTHORIZATION REQUIRED";
+        "FINAL ROYAL AUTHORIZATION REQUIRED";
 
     classifiedWarning.innerHTML = `
-        This action cannot be undone.<br>
-        Proceed with classified access?
+        Do you dare uncover<br>
+        the contents of this dossier?
     `;
 
     document.getElementById("securityOne").outerHTML = `
         <button class="security-button" id="securityTwo">
-            CONFIRM ACCESS
+            UNCOVER THE DOSSIER
         </button>
     `;
 
@@ -1406,6 +1850,65 @@ giftButton.addEventListener("click", function() {
 
 });
 
+/* =========================
+   SECRET KEY + MESSAGE
+========================= */
+
+const keyButton =
+    document.getElementById("keyButton");
+
+const keyHint =
+    document.getElementById("keyHint");
+
+const sincereMessage =
+    document.getElementById("sincereMessage");
+
+let keyClicks = 0;
+
+keyButton.addEventListener("click", function() {
+
+    keyClicks++;
+
+    if (keyClicks === 1) {
+
+        keyHint.textContent =
+            "...";
+
+        keyHint.classList.add("show");
+
+    }
+
+    else if (keyClicks === 2) {
+
+        keyHint.textContent =
+            "THE KEY APPEARS TO BE IMPORTANT.";
+
+    }
+
+    else if (keyClicks === 3) {
+
+        keyHint.textContent =
+            "🔓 CLEARANCE GRANTED.";
+
+        /* Stop the floating animation */
+
+        keyButton.style.animation = "none";
+
+        /* Change the key slightly */
+
+        keyButton.textContent = "🔓";
+
+        /* Reveal sincere message */
+
+        setTimeout(function() {
+
+            sincereMessage.classList.add("show");
+
+        }, 500);
+
+    }
+
+});
 
 /* =========================
    PROFILE FLIP
@@ -1428,6 +1931,72 @@ profile.addEventListener("click", function() {
     profileInner.classList.add("clicked");
 
 });
+/* =========================
+   BIRTHDAY COUNTDOWN
+========================= */
+
+const countdownTarget =
+    new Date("September 11, 2026 14:00:00").getTime();
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+
+    const difference = countdownTarget - now;
+
+    if (difference <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        document.querySelector(".countdown-title").textContent =
+            "THE CHIEF HAS BEEN SUMMONED. 👑";
+
+        document.querySelector(".countdown-footer").textContent =
+            "⚖️ BIRTHDAY JURISDICTION IS NOW IN EFFECT.";
+
+        return;
+    }
+
+    const days =
+        Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (difference % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (difference % (1000 * 60)) /
+            1000
+        );
+
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
 
 </script>
 
