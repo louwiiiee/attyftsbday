@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b12">
-<title>Happy Birthday Sir Chief, ATTY FTS! 🎂🥳</title>
+<title>Happy Birthday Sir Chief, ATTY FTS! 🎂</title>
 
 <style>
 * {
@@ -24,213 +24,6 @@ body {
     background: #080b12;
     overflow-x: hidden;
 }
-
-/* =========================================================
-   🔐 SECRET SCROLL-TO-OPEN INTRO
-========================================================= */
-
-.secret-opening {
-    height: 100vh;
-    min-height: 650px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-    z-index: 20;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(31,111,235,.08),
-            transparent 45%
-        ),
-        #080b12;
-
-    border-bottom: 1px solid rgba(48,54,61,.7);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease,
-        filter .8s ease;
-}
-
-.secret-content {
-    width: min(500px, 88%);
-    text-align: center;
-    color: #8b949e;
-}
-
-/* Confidential badge */
-
-.secret-badge {
-    display: inline-block;
-
-    padding: 7px 14px;
-
-    border: 1px solid #30363d;
-    border-radius: 5px;
-
-    color: #f0883e;
-    background: rgba(240,136,62,.06);
-
-    font-size: 11px;
-    letter-spacing: 3px;
-
-    margin-bottom: 30px;
-
-    animation: secretFade 1.2s ease both;
-}
-
-/* Main file title */
-
-.secret-file {
-    color: #f0f6fc;
-
-    font-size: clamp(40px, 10vw, 70px);
-
-    font-weight: bold;
-    letter-spacing: 8px;
-
-    line-height: 1;
-
-    text-shadow:
-        0 0 20px rgba(88,166,255,.12);
-
-    animation:
-        secretFade 1.2s ease .15s both,
-        secretPulse 4s ease-in-out infinite;
-}
-
-.secret-number {
-    margin-top: 16px;
-
-    color: #58a6ff;
-
-    font-size: 12px;
-    letter-spacing: 4px;
-
-    animation: secretFade 1.2s ease .3s both;
-}
-
-.secret-message {
-    margin-top: 45px;
-
-    color: #8b949e;
-
-    font-size: 12px;
-    line-height: 2;
-
-    letter-spacing: 1px;
-
-    animation: secretFade 1.2s ease .45s both;
-}
-
-.secret-message span {
-    color: #3fb950;
-    font-weight: bold;
-}
-
-/* Scroll prompt */
-
-.scroll-indicator {
-    margin-top: 75px;
-
-    color: #8b949e;
-
-    font-size: 10px;
-    letter-spacing: 3px;
-
-    animation:
-        secretFade 1.2s ease .7s both,
-        scrollBounce 2s ease-in-out infinite;
-}
-
-.scroll-arrow {
-    margin-top: 12px;
-
-    color: #58a6ff;
-
-    font-size: 28px;
-
-    text-shadow:
-        0 0 15px rgba(88,166,255,.6);
-}
-
-@keyframes secretFade {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-@keyframes secretPulse {
-
-    0%,100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .72;
-    }
-
-}
-
-@keyframes scrollBounce {
-
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(8px);
-    }
-
-}
-
-/* =========================================================
-   MAIN CONTENT STARTS HIDDEN
-========================================================= */
-
-.container {
-    width: min(680px, 94%);
-    margin: auto;
-    padding: 30px 0 50px;
-
-    opacity: 0;
-    transform: translateY(70px);
-
-    transition:
-        opacity 1.2s ease,
-        transform 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-/* Reveal once user starts scrolling */
-
-body.page-open .container {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Intro fades away */
-
-body.page-open .secret-opening {
-    opacity: .25;
-    transform: scale(.97);
-    filter: blur(2px);
-}
-
-/* =========================================================
-   ORIGINAL BACKGROUND
-========================================================= */
 
 .background {
     position: fixed;
@@ -362,6 +155,12 @@ body.page-open .secret-opening {
     }
 }
 
+.container {
+    width: min(680px, 94%);
+    margin: auto;
+    padding: 30px 0 50px;
+}
+
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -434,7 +233,6 @@ body.page-open .secret-opening {
     position: relative;
     z-index: 5;
     perspective: 1000px;
-    cursor: pointer;
 }
 
 .profile-inner {
@@ -754,23 +552,6 @@ footer {
     .detail-value {
         font-size: 14px;
     }
-
-    .secret-opening {
-        min-height: 600px;
-    }
-
-    .secret-file {
-        font-size: 40px;
-        letter-spacing: 5px;
-    }
-
-    .secret-message {
-        margin-top: 35px;
-    }
-
-    .scroll-indicator {
-        margin-top: 60px;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -782,111 +563,10 @@ footer {
         transition: none !important;
     }
 }
-
-/* ✨ STRONGER GLITTER WHEN GIFT IS OPENED */
-
-body.gift-opened .sparkle {
-    animation-duration: 5s, 1s;
-    opacity: .8;
-
-    box-shadow:
-        0 0 6px rgba(255,255,255,1),
-        0 0 14px rgba(255,209,102,.95),
-        0 0 28px rgba(255,209,102,.65),
-        0 0 42px rgba(210,168,255,.35);
-}
-
-body.gift-opened .sparkle::before {
-    height: 19px;
-}
-
-body.gift-opened .sparkle::after {
-    width: 19px;
-}
-
-body.gift-opened .glitter {
-    animation: glitterGlow 2s ease-in-out infinite;
-}
-
-@keyframes glitterGlow {
-    0%, 100% {
-        opacity: .8;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-body.gift-opened .card {
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.45),
-        0 0 45px rgba(35,134,54,.18),
-        0 0 90px rgba(210,168,255,.18),
-        0 0 120px rgba(255,209,102,.08);
-
-    transition: box-shadow 1.5s ease;
-}
-
-/* 👆 CLICK SIR CHIEF'S PICTURE TO FLIP */
-
-.profile-inner.clicked {
-    animation: profileClickFlip 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes profileClickFlip {
-    0% {
-        transform: rotateY(0deg) scale(1);
-    }
-
-    45% {
-        transform: rotateY(190deg) scale(1.05);
-    }
-
-    100% {
-        transform: rotateY(360deg) scale(1);
-    }
-}
-
 </style>
 </head>
 
 <body>
-
-<!-- 🔐 SECRET OPENING SCREEN -->
-
-<section class="secret-opening" id="secretOpening">
-
-    <div class="secret-content">
-
-        <div class="secret-badge">
-            🔒 CONFIDENTIAL
-        </div>
-
-        <div class="secret-file">
-            CASE FILE
-        </div>
-
-        <div class="secret-number">
-            FTS / 2026
-        </div>
-
-        <div class="secret-message">
-            <span>AUTHORIZED PERSONNEL ONLY</span>
-            <br>
-            A special birthday surprise has been sealed within.
-            <br>
-            Scroll to unseal its contents.
-        </div>
-
-        <div class="scroll-indicator">
-            <span>SCROLL TO OPEN</span>
-            <div class="scroll-arrow">↓</div>
-        </div>
-
-    </div>
-
-</section>
 
 <div class="background">
     <div class="orb one"></div>
@@ -1110,28 +790,6 @@ body.gift-opened .card {
 
 <script>
 
-/* 🔐 SCROLL TO OPEN */
-
-const secretOpening =
-    document.getElementById("secretOpening");
-
-let pageOpened = false;
-
-window.addEventListener("scroll", function() {
-
-    if (pageOpened) return;
-
-    if (window.scrollY > 40) {
-
-        pageOpened = true;
-
-        document.body.classList.add("page-open");
-
-    }
-
-});
-
-
 const giftButton =
     document.getElementById("giftButton");
 
@@ -1148,10 +806,6 @@ giftButton.addEventListener("click", function() {
 
     birthdayNote.classList.toggle("show");
 
-    /* ✨ Intensify glitter */
-    document.body.classList.toggle("gift-opened");
-
-    /* 🎵 Start birthday music */
     birthdayMusic.play().catch(() => {});
 
 });
@@ -1171,26 +825,6 @@ window.addEventListener("load", function() {
         });
 
     }, 2000);
-
-});
-
-
-/* 👆 CLICK PROFILE TO FLIP */
-
-const profile =
-    document.querySelector(".profile");
-
-const profileInner =
-    document.querySelector(".profile-inner");
-
-profile.addEventListener("click", function() {
-
-    profileInner.classList.remove("clicked");
-
-    /* Restart animation every click */
-    void profileInner.offsetWidth;
-
-    profileInner.classList.add("clicked");
 
 });
 
