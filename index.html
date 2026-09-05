@@ -15,19 +15,320 @@
 
 html {
     scroll-behavior: smooth;
-    min-height: 100%;
-    height: auto;
 }
 
 body {
     min-height: 100vh;
-    height: auto;
     font-family: "Courier New", monospace;
     color: #e6edf3;
     background: #080b12;
     overflow-x: hidden;
-    overflow-y: auto;
 }
+
+/* =========================================================
+   ANCIENT SCROLL OPENING SCREEN
+========================================================= */
+
+.scroll-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(120,78,35,.22), transparent 38%),
+        radial-gradient(circle at 20% 20%, rgba(35,134,54,.10), transparent 30%),
+        #080b12;
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.scroll-screen.opened {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.scroll-intro {
+    text-align: center;
+    width: min(500px, 92%);
+    animation: introAppear 1.2s ease both;
+}
+
+@keyframes introAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.scroll-title {
+    color: #d6b36a;
+    font-size: clamp(15px, 4vw, 20px);
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(214,179,106,.35);
+}
+
+.scroll-subtitle {
+    color: #8b949e;
+    font-size: 12px;
+    margin-top: 22px;
+    letter-spacing: 1px;
+}
+
+.ancient-scroll {
+    position: relative;
+    width: min(430px, 90vw);
+    height: 230px;
+    margin: auto;
+    cursor: pointer;
+    filter:
+        drop-shadow(0 25px 35px rgba(0,0,0,.65))
+        drop-shadow(0 0 25px rgba(214,179,106,.12));
+    transition: transform .35s ease, filter .35s ease;
+}
+
+.ancient-scroll:hover {
+    transform: translateY(-6px) scale(1.025);
+    filter:
+        drop-shadow(0 30px 40px rgba(0,0,0,.7))
+        drop-shadow(0 0 35px rgba(214,179,106,.3));
+}
+
+.scroll-paper {
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 25px;
+    bottom: 25px;
+    overflow: hidden;
+    border-radius: 4px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.25), transparent 25%),
+        radial-gradient(circle at 80% 75%, rgba(80,45,15,.18), transparent 28%),
+        linear-gradient(
+            90deg,
+            #b98948 0%,
+            #e2c27c 8%,
+            #f1d99a 50%,
+            #dfbd76 92%,
+            #a8783e 100%
+        );
+    border: 2px solid #8c612d;
+    box-shadow:
+        inset 0 0 25px rgba(79,45,15,.35),
+        inset 0 0 5px rgba(255,255,255,.25);
+}
+
+.scroll-paper::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(100,62,25,.35);
+    pointer-events: none;
+}
+
+.scroll-writing {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #513719;
+    text-align: center;
+    text-shadow: 0 1px rgba(255,235,180,.35);
+}
+
+.scroll-writing .symbol {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.scroll-writing h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(18px, 5vw, 25px);
+    letter-spacing: 1px;
+}
+
+.scroll-writing p {
+    margin-top: 7px;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.scroll-roll {
+    position: absolute;
+    width: 48px;
+    height: 250px;
+    top: -10px;
+    z-index: 3;
+    border-radius: 50%;
+    background:
+        linear-gradient(
+            90deg,
+            #75491f,
+            #b47c38 18%,
+            #e1bd72 45%,
+            #a96f32 72%,
+            #633c1b
+        );
+    border: 2px solid #5c381b;
+    box-shadow:
+        inset 6px 0 8px rgba(40,20,5,.35),
+        inset -6px 0 8px rgba(255,220,140,.18),
+        0 8px 12px rgba(0,0,0,.4);
+}
+
+.scroll-roll.left {
+    left: 5px;
+}
+
+.scroll-roll.right {
+    right: 5px;
+}
+
+.scroll-roll::after {
+    content: "";
+    position: absolute;
+    width: 58px;
+    height: 20px;
+    left: -7px;
+    top: 8px;
+    border-radius: 50%;
+    background: #9b6830;
+    border: 2px solid #5c381b;
+    box-shadow: inset 0 3px 5px rgba(255,220,140,.2);
+}
+
+.scroll-seal {
+    position: absolute;
+    z-index: 5;
+    width: 54px;
+    height: 54px;
+    right: 47px;
+    bottom: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 30%, #d9534f, #8e1717 65%, #5c0d0d);
+    border: 3px solid #641010;
+    color: #f6d68b;
+    font-size: 22px;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.4),
+        inset 0 2px 4px rgba(255,255,255,.18);
+    transform: rotate(-8deg);
+}
+
+.scroll-hint {
+    color: #d6b36a;
+    font-size: 11px;
+    margin-top: 15px;
+    animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+    0%,100% {
+        opacity: .55;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Scroll opening animation */
+
+.scroll-screen.scroll-opening .scroll-paper {
+    animation: paperReveal 1.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.scroll-screen.scroll-opening .scroll-roll.left {
+    animation: rollLeft 1.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.scroll-screen.scroll-opening .scroll-roll.right {
+    animation: rollRight 1.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.scroll-screen.scroll-opening .scroll-seal {
+    animation: sealOpen .55s ease forwards;
+}
+
+.scroll-screen.scroll-opening .scroll-intro {
+    animation: scrollExit 1.8s ease forwards;
+}
+
+@keyframes paperReveal {
+    0% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+}
+
+@keyframes rollLeft {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+    100% {
+        transform: translateX(-240px) rotate(-12deg);
+    }
+}
+
+@keyframes rollRight {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+    100% {
+        transform: translateX(240px) rotate(12deg);
+    }
+}
+
+@keyframes sealOpen {
+    0% {
+        transform: rotate(-8deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-8deg) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes scrollExit {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.15);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
 
 .background {
     position: fixed;
@@ -237,6 +538,7 @@ body {
     position: relative;
     z-index: 5;
     perspective: 1000px;
+    cursor: pointer;
 }
 
 .profile-inner {
@@ -291,6 +593,22 @@ body {
     }
     70% {
         transform: rotateY(390deg) scale(1.04);
+    }
+    100% {
+        transform: rotateY(360deg) scale(1);
+    }
+}
+
+.profile-inner.clicked {
+    animation: profileClickFlip 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes profileClickFlip {
+    0% {
+        transform: rotateY(0deg) scale(1);
+    }
+    45% {
+        transform: rotateY(190deg) scale(1.05);
     }
     100% {
         transform: rotateY(360deg) scale(1);
@@ -422,6 +740,10 @@ audio {
     box-shadow: 0 8px 25px rgba(35,134,54,.25);
 }
 
+/* =========================================================
+   BIRTHDAY GIFT
+========================================================= */
+
 .gift-section {
     text-align: center;
     margin: 20px 0 25px;
@@ -505,12 +827,60 @@ audio {
         sans-serif;
 }
 
+/* =========================================================
+   STRONGER GLITTER AFTER GIFT
+========================================================= */
+
+body.gift-opened .sparkle {
+    animation-duration: 5s;
+    opacity: .8;
+    box-shadow:
+        0 0 6px rgba(255,255,255,1),
+        0 0 14px rgba(255,209,102,.95),
+        0 0 28px rgba(255,209,102,.65),
+        0 0 42px rgba(210,168,255,.35);
+}
+
+body.gift-opened .sparkle::before {
+    height: 19px;
+}
+
+body.gift-opened .sparkle::after {
+    width: 19px;
+}
+
+body.gift-opened .glitter {
+    animation: glitterGlow 2s ease-in-out infinite;
+}
+
+@keyframes glitterGlow {
+    0%,100% {
+        opacity: .8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+body.gift-opened .card {
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 45px rgba(35,134,54,.18),
+        0 0 90px rgba(210,168,255,.18),
+        0 0 120px rgba(255,209,102,.08);
+    transition: box-shadow 1.5s ease;
+}
+
 footer {
     text-align: center;
     color: #8b949e;
     font-size: 12px;
     margin-top: 20px;
 }
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width:600px) {
 
@@ -552,6 +922,23 @@ footer {
     .detail-value {
         font-size: 14px;
     }
+
+    .ancient-scroll {
+        height: 205px;
+    }
+
+    .scroll-roll {
+        height: 225px;
+    }
+
+    .scroll-writing h2 {
+        font-size: 18px;
+    }
+
+    .scroll-seal {
+        right: 38px;
+        bottom: 30px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -563,83 +950,85 @@ footer {
         transition: none !important;
     }
 }
-
-body.gift-opened .sparkle {
-    animation-duration: 5s, 1s;
-    opacity: .8;
-
-    box-shadow:
-        0 0 6px rgba(255,255,255,1),
-        0 0 14px rgba(255,209,102,.95),
-        0 0 28px rgba(255,209,102,.65),
-        0 0 42px rgba(210,168,255,.35);
-}
-
-body.gift-opened .sparkle::before {
-    height: 19px;
-}
-
-body.gift-opened .sparkle::after {
-    width: 19px;
-}
-
-body.gift-opened .glitter {
-    animation: glitterGlow 2s ease-in-out infinite;
-}
-
-@keyframes glitterGlow {
-    0%, 100% {
-        opacity: .8;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-body.gift-opened .card {
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.45),
-        0 0 45px rgba(35,134,54,.18),
-        0 0 90px rgba(210,168,255,.18),
-        0 0 120px rgba(255,209,102,.08);
-
-    transition: box-shadow 1.5s ease;
-}
-
-.profile {
-    cursor: pointer;
-}
-
-.profile-inner.clicked {
-    animation: profileClickFlip 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes profileClickFlip {
-    0% {
-        transform: rotateY(0deg) scale(1);
-    }
-
-    45% {
-        transform: rotateY(190deg) scale(1.05);
-    }
-
-    100% {
-        transform: rotateY(360deg) scale(1);
-    }
-}
 </style>
 </head>
 
 <body>
 
+<!-- =======================================================
+     ANCIENT SCROLL INTRO
+======================================================= -->
+
+<div class="scroll-screen" id="scrollScreen">
+
+    <div class="scroll-intro">
+
+        <div class="scroll-title">
+            A Confidential Birthday Decree
+        </div>
+
+        <div
+            class="ancient-scroll"
+            id="ancientScroll"
+            role="button"
+            tabindex="0"
+            aria-label="Open the birthday scroll">
+
+            <div class="scroll-paper">
+
+                <div class="scroll-writing">
+
+                    <div class="symbol">⚖️</div>
+
+                    <h2>
+                        A Birthday Decree Awaits
+                    </h2>
+
+                    <p>
+                        By order of the Court...
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="scroll-roll left"></div>
+            <div class="scroll-roll right"></div>
+
+            <div class="scroll-seal">
+                ⚖️
+            </div>
+
+        </div>
+
+        <div class="scroll-hint">
+            ✨ CLICK THE SCROLL TO REVEAL ✨
+        </div>
+
+        <div class="scroll-subtitle">
+            This document is classified until opened.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     BACKGROUND
+======================================================= -->
+
 <div class="background">
+
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
+
 </div>
 
+
 <div class="glitter">
+
     <span class="sparkle s1"></span>
     <span class="sparkle s2"></span>
     <span class="sparkle s3"></span>
@@ -653,22 +1042,47 @@ body.gift-opened .card {
     <span class="sparkle s11"></span>
     <span class="sparkle s12"></span>
     <span class="sparkle s13"></span>
+
 </div>
+
+
+<!-- =======================================================
+     MAIN BIRTHDAY PAGE
+======================================================= -->
 
 <main class="container">
 
     <div class="topbar">
-        <span class="repo">fts-birthday / celebration</span>
-        <span class="confirmed">● CONFIRMED</span>
+
+        <span class="repo">
+            fts-birthday / celebration
+        </span>
+
+        <span class="confirmed">
+            ● CONFIRMED
+        </span>
+
     </div>
+
 
     <section class="card">
 
+
+        <!-- COVER -->
+
         <div class="cover">
-            <img src="fts-cover.jpg" alt="FTS Birthday Group Photo">
+
+            <img
+                src="fts-cover.jpg"
+                alt="FTS Birthday Group Photo">
+
         </div>
 
+
+        <!-- PROFILE -->
+
         <div class="profile">
+
             <div class="profile-inner">
 
                 <div class="profile-back">
@@ -676,13 +1090,22 @@ body.gift-opened .card {
                 </div>
 
                 <div class="profile-front">
-                    <img src="fts.jpg" alt="FTS">
+
+                    <img
+                        src="fts.jpg"
+                        alt="FTS">
+
                 </div>
 
             </div>
+
         </div>
 
+
         <div class="content">
+
+
+            <!-- TITLE -->
 
             <h1>
                 HAPPY BIRTHDAY SIR CHIEF, ATTY FTS! 🎂🥳
@@ -692,17 +1115,30 @@ body.gift-opened .card {
                 Hail to the Chief. 👑
             </div>
 
+
+            <!-- MOTION -->
+
             <div class="motion">
                 ⚖️ Motion to celebrate: GRANTED.
             </div>
 
+
+            <!-- BIRTHDAY GIFT -->
+
             <div class="gift-section">
 
-                <button class="gift-button" id="giftButton">
+                <button
+                    class="gift-button"
+                    id="giftButton">
+
                     🎁 OPEN YOUR BIRTHDAY GIFT
+
                 </button>
 
-                <div class="note" id="birthdayNote">
+
+                <div
+                    class="note"
+                    id="birthdayNote">
 
                     <div class="note-icon">
                         🎂✨
@@ -722,6 +1158,9 @@ body.gift-opened .card {
 
             </div>
 
+
+            <!-- CASE STATUS -->
+
             <div class="case">
 
                 <div class="label">
@@ -734,6 +1173,9 @@ body.gift-opened .card {
 
             </div>
 
+
+            <!-- MUSIC -->
+
             <div class="music">
 
                 <div class="label">
@@ -744,7 +1186,10 @@ body.gift-opened .card {
                     Happy Birthday
                 </div>
 
-                <audio id="birthdayMusic" controls preload="auto">
+                <audio
+                    id="birthdayMusic"
+                    controls
+                    preload="none">
 
                     <source
                         src="happy-birthday.mp3"
@@ -756,11 +1201,15 @@ body.gift-opened .card {
 
             </div>
 
+
+            <!-- CELEBRATION DETAILS -->
+
             <div class="details">
 
                 <h2>
                     ⚖️ CASE DETAILS
                 </h2>
+
 
                 <div class="detail">
 
@@ -773,6 +1222,7 @@ body.gift-opened .card {
                     </span>
 
                 </div>
+
 
                 <div class="detail">
 
@@ -787,6 +1237,7 @@ body.gift-opened .card {
 
                 </div>
 
+
                 <div class="detail">
 
                     <span class="detail-label">
@@ -798,6 +1249,7 @@ body.gift-opened .card {
                     </span>
 
                 </div>
+
 
                 <div class="detail">
 
@@ -813,10 +1265,14 @@ body.gift-opened .card {
 
                 </div>
 
+
                 <div class="order">
+
                     📋 COURT ORDER:<br>
                     ATTENDANCE IS A MUST.
+
                 </div>
+
 
                 <a
                     class="location"
@@ -834,13 +1290,70 @@ body.gift-opened .card {
 
     </section>
 
+
     <footer>
         from LSD 2026 with ♡
     </footer>
 
 </main>
 
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
 <script>
+
+/* =========================================================
+   ANCIENT SCROLL
+========================================================= */
+
+const scrollScreen =
+    document.getElementById("scrollScreen");
+
+const ancientScroll =
+    document.getElementById("ancientScroll");
+
+
+function openAncientScroll() {
+
+    if (scrollScreen.classList.contains("scroll-opening")) {
+        return;
+    }
+
+    scrollScreen.classList.add("scroll-opening");
+
+    setTimeout(function() {
+
+        scrollScreen.classList.add("opened");
+
+    }, 1600);
+
+}
+
+
+ancientScroll.addEventListener("click", openAncientScroll);
+
+
+ancientScroll.addEventListener("keydown", function(event) {
+
+    if (
+        event.key === "Enter" ||
+        event.key === " "
+    ) {
+
+        event.preventDefault();
+
+        openAncientScroll();
+
+    }
+
+});
+
+
+/* =========================================================
+   BIRTHDAY GIFT
+========================================================= */
 
 const giftButton =
     document.getElementById("giftButton");
@@ -848,44 +1361,19 @@ const giftButton =
 const birthdayNote =
     document.getElementById("birthdayNote");
 
-const birthdayMusic =
-    document.getElementById("birthdayMusic");
-
-
-/* 🎁 OPEN GIFT */
 
 giftButton.addEventListener("click", function() {
 
     birthdayNote.classList.toggle("show");
 
-    /* ✨ Intensify glitter */
     document.body.classList.toggle("gift-opened");
 
-    /* 🎵 Start birthday music */
-    birthdayMusic.play().catch(() => {});
-
 });
 
 
-/* 🎵 TRY MUSIC AFTER 2 SECONDS */
-
-window.addEventListener("load", function() {
-
-    setTimeout(function() {
-
-        birthdayMusic.play().catch(function() {
-
-            /* Browser may block autoplay.
-               The gift button can start it instead. */
-
-        });
-
-    }, 2000);
-
-});
-
-
-/* 👆 CLICK PROFILE TO FLIP */
+/* =========================================================
+   PROFILE FLIP
+========================================================= */
 
 const profile =
     document.querySelector(".profile");
@@ -893,11 +1381,11 @@ const profile =
 const profileInner =
     document.querySelector(".profile-inner");
 
+
 profile.addEventListener("click", function() {
 
     profileInner.classList.remove("clicked");
 
-    /* Restart animation every click */
     void profileInner.offsetWidth;
 
     profileInner.classList.add("clicked");
